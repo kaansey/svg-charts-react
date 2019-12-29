@@ -2,7 +2,15 @@
 
 [![npm package][npm-badge]][npm]
 
-### [Pie Chart](https://github.com/kaansey/svg-charts-react/blob/master/src/charts/PieChart/README.md)
+### Installation
+Add `svg-charts-react` dependency
+```bash
+yarn add svg-charts-react
+npm install svg-charts-react --save
+```
+
+### Content
+[Pie Chart](https://github.com/kaansey/svg-charts-react/blob/master/src/charts/PieChart/README.md)
 
 Todos:
 
