@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "svg charts",
+  "name": "react svg charts",
   "icons": [
     {
       "src": "favicon.ico",
