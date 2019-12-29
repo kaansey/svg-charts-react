@@ -1,0 +1,15 @@
+import e,{useState as n}from"react";
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */var t=function(){return(t=Object.assign||function(e){for(var n,t=1,r=arguments.length;t<r;t++)for(var o in n=arguments[t])Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o]);return e}).apply(this,arguments)},r=0,o=function(n){var t=n.center,o=n.data,i=n.onHover,a=n.expandSize,l=n.strokeWidth,u=n.strokeColor,c=n.strokeLinejoin,s=n.transitionTimingFunction,v=n.transitionDuration,d=o.reduce((function(e,n){return n.value+e}),0),f=function(e,n){return function(t){i(e,n,t)}};return d<1?null:o.map((function(n,i){var h=t+(n.hovered?a:0)-l/2,p=function(e){var n=e.total,t=e.radius,r=e.value,o=e.center,i=e.decimals,a=Number((r/n*360*Math.PI/180).toFixed(i)),l=(o+Math.sin(a)*t).toFixed(i),u=(o-Math.cos(a)*t).toFixed(i);return"\n          M"+o+" "+o+",\n          L"+o+" "+(o-t)+",\n          A"+t+" "+t+",\n          0 "+(a>Math.PI?1:0)+" 1,\n          "+l+" "+u+"Z"}({total:d,radius:h,value:n.value,center:t,decimals:4}),m=(r/d*360).toFixed(4);r+=n.value;var x=1===o.length;return e.createElement("g",{key:"pie"+i,transform:"rotate("+m+", "+t+", "+t+")"},x?e.createElement("circle",{cx:t,cy:t,r:h,fill:n.color}):e.createElement("path",{d:p,fill:n.color,stroke:u,strokeWidth:l,strokeLinejoin:c,onMouseEnter:f(n,i),onMouseLeave:f(null,null),onTouchStart:f(n,i),onTouchEnd:f(null,null),style:{transitionProperty:"all",transitionTimingFunction:s,transitionDuration:v}},n.title&&e.createElement("title",null,n.title)))}))},i=function(r){var i=r.data,a=r.viewBoxSize,l=n(),u=l[0],c=l[1],s=r.viewBoxSize/2,v=r.expandOnHover?r.expandSize:0,d=function(e,n,r){var o=e.filter((function(e){return e.value>0}));return o.length&&n?o.map((function(e,n){return t(t({},e),{hovered:n===r})})):o}(i,r.expandOnHover,u);return d&&d.length>0?e.createElement("svg",{viewBox:"0 0 "+(a+2*v)+" "+(a+2*v)},e.createElement("g",{transform:"translate("+v+", "+v+")"},e.createElement(o,t({},r,{center:s,data:d,onHover:function(e,n,t){r.expandOnHover&&c(n),r.onPieHover&&r.onPieHover(e,n,t)}})))):null};i.defaultProps={viewBoxSize:100,expandOnHover:!0,expandSize:3,onPieHover:function(){return null},shrinkOnTouchEnd:!1,strokeColor:"#fff",strokeLinejoin:"round",strokeWidth:0,transitionDuration:"0s",transitionTimingFunction:"ease-out"};export{i as PieChart};

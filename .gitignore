@@ -1,0 +1,17 @@
+bucket/
+
+# Node
+node_modules
+package-lock.json
+yarn-error.log
+
+# Build
+dist
+coverage
+
+# OS files
+.DS_Store
+
+# IDE
+.vscode
+.idea
