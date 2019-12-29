@@ -24,11 +24,11 @@ class App extends Component {
         <PieChartWrapper>
           <PieChart
             data={data}
-            onPieHover={(d, i, e) => {
-              if (d) {
-                console.log('Mouse enter - Index:', i, 'Data:', d, 'Event:', e);
+            onPieHover={(data, index, event) => {
+              if (data) {
+                console.log('On Mouse Hover', { data, index, event });
               } else {
-                console.log('Mouse leave - Index:', i, 'Event:', e);
+                console.log('On Mouse Leave:', { index, event });
               }
             }}
           />
