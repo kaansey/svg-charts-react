@@ -45,6 +45,7 @@ var getPath = function (_a) {
     var path = "\n          M" + center + " " + center + ",\n          L" + center + " " + (center - radius) + ",\n          A" + radius + " " + radius + ",\n          0 " + la + " 1,\n          " + x + " " + y + "Z";
     return path;
 };
+//# sourceMappingURL=utils.js.map
 
 var decimals = 4;
 var offset = 0;

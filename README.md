@@ -1,4 +1,4 @@
-# Reacr Svg Charts
+# React Svg Charts
 
 ## Pie Chart
 
