@@ -1,4 +1,6 @@
-import e,{useState as n}from"react";
+/* eslint-disable */
+import React, { useState } from 'react';
+
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use
@@ -12,4 +14,99 @@ MERCHANTABLITY OR NON-INFRINGEMENT.
 
 See the Apache Version 2.0 License for specific language governing permissions
 and limitations under the License.
-***************************************************************************** */var t=function(){return(t=Object.assign||function(e){for(var n,t=1,r=arguments.length;t<r;t++)for(var o in n=arguments[t])Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o]);return e}).apply(this,arguments)},r=0,o=function(n){var t=n.center,o=n.data,i=n.onHover,a=n.expandSize,l=n.strokeWidth,u=n.strokeColor,c=n.strokeLinejoin,s=n.transitionTimingFunction,v=n.transitionDuration,d=o.reduce((function(e,n){return n.value+e}),0),f=function(e,n){return function(t){i(e,n,t)}};return d<1?null:o.map((function(n,i){var h=t+(n.hovered?a:0)-l/2,p=function(e){var n=e.total,t=e.radius,r=e.value,o=e.center,i=e.decimals,a=Number((r/n*360*Math.PI/180).toFixed(i)),l=(o+Math.sin(a)*t).toFixed(i),u=(o-Math.cos(a)*t).toFixed(i);return"\n          M"+o+" "+o+",\n          L"+o+" "+(o-t)+",\n          A"+t+" "+t+",\n          0 "+(a>Math.PI?1:0)+" 1,\n          "+l+" "+u+"Z"}({total:d,radius:h,value:n.value,center:t,decimals:4}),m=(r/d*360).toFixed(4);r+=n.value;var x=1===o.length;return e.createElement("g",{key:"pie"+i,transform:"rotate("+m+", "+t+", "+t+")"},x?e.createElement("circle",{cx:t,cy:t,r:h,fill:n.color}):e.createElement("path",{d:p,fill:n.color,stroke:u,strokeWidth:l,strokeLinejoin:c,onMouseEnter:f(n,i),onMouseLeave:f(null,null),onTouchStart:f(n,i),onTouchEnd:f(null,null),style:{transitionProperty:"all",transitionTimingFunction:s,transitionDuration:v}},n.title&&e.createElement("title",null,n.title)))}))},i=function(r){var i=r.data,a=r.viewBoxSize,l=n(),u=l[0],c=l[1],s=r.viewBoxSize/2,v=r.expandOnHover?r.expandSize:0,d=function(e,n,r){var o=e.filter((function(e){return e.value>0}));return o.length&&n?o.map((function(e,n){return t(t({},e),{hovered:n===r})})):o}(i,r.expandOnHover,u);return d&&d.length>0?e.createElement("svg",{viewBox:"0 0 "+(a+2*v)+" "+(a+2*v)},e.createElement("g",{transform:"translate("+v+", "+v+")"},e.createElement(o,t({},r,{center:s,data:d,onHover:function(e,n,t){r.expandOnHover&&c(n),r.onPieHover&&r.onPieHover(e,n,t)}})))):null};i.defaultProps={viewBoxSize:100,expandOnHover:!0,expandSize:3,onPieHover:function(){return null},shrinkOnTouchEnd:!1,strokeColor:"#fff",strokeLinejoin:"round",strokeWidth:0,transitionDuration:"0s",transitionTimingFunction:"ease-out"};export{i as PieChart};
+***************************************************************************** */
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+var transformPiesData = function (data, expandOnHover, hoveredIndex) {
+    var filteredData = data.filter(function (d) { return d.value > 0; });
+    if (filteredData.length) {
+        return expandOnHover
+            ? filteredData.map(function (item, index) { return (__assign(__assign({}, item), { hovered: index === hoveredIndex })); })
+            : filteredData;
+    }
+    return filteredData;
+};
+var getPath = function (_a) {
+    var total = _a.total, radius = _a.radius, value = _a.value, center = _a.center, decimals = _a.decimals;
+    var radians = Number((((value / total) * 360 * Math.PI) / 180).toFixed(decimals));
+    var x = (center + Math.sin(radians) * radius).toFixed(decimals);
+    var y = (center - Math.cos(radians) * radius).toFixed(decimals);
+    var la = radians > Math.PI ? 1 : 0;
+    var path = "\n          M" + center + " " + center + ",\n          L" + center + " " + (center - radius) + ",\n          A" + radius + " " + radius + ",\n          0 " + la + " 1,\n          " + x + " " + y + "Z";
+    return path;
+};
+
+var decimals = 4;
+var offset = 0;
+var Pies = function (_a) {
+    var center = _a.center, data = _a.data, onHover = _a.onHover, expandSize = _a.expandSize, strokeWidth = _a.strokeWidth, strokeColor = _a.strokeColor, strokeLinejoin = _a.strokeLinejoin, transitionTimingFunction = _a.transitionTimingFunction, transitionDuration = _a.transitionDuration;
+    var total = data.reduce(function (prev, current) { return current.value + prev; }, 0);
+    var handleOnHover = function (d, index) { return function (e) {
+        onHover(d, index, e);
+    }; };
+    if (total < 1) {
+        return null;
+    }
+    return data.map(function (d, index) {
+        var radius = center + (d.hovered ? expandSize : 0) - strokeWidth / 2;
+        var path = getPath({
+            total: total,
+            radius: radius,
+            value: d.value,
+            center: center,
+            decimals: decimals,
+        });
+        var currentOffset = ((offset / total) * 360).toFixed(decimals);
+        offset += d.value;
+        var isSinglePie = data.length === 1;
+        return (React.createElement("g", { key: 'pie' + index, transform: "rotate(" + currentOffset + ", " + center + ", " + center + ")" }, isSinglePie ? ( // single pie
+        React.createElement("circle", { cx: center, cy: center, r: radius, fill: d.color })) : (React.createElement("path", { d: path, fill: d.color, stroke: strokeColor, strokeWidth: strokeWidth, strokeLinejoin: strokeLinejoin, onMouseEnter: handleOnHover(d, index), onMouseLeave: handleOnHover(null, null), onTouchStart: handleOnHover(d, index), onTouchEnd: handleOnHover(null, null), style: {
+                transitionProperty: 'all',
+                transitionTimingFunction: transitionTimingFunction,
+                transitionDuration: transitionDuration,
+            } }, d.title && React.createElement("title", null, d.title)))));
+    });
+};
+
+var PieChart = function (props) {
+    var data = props.data, viewBoxSize = props.viewBoxSize;
+    var _a = useState(), hoveredIndex = _a[0], setHoveredIndex = _a[1];
+    var hanldePieHover = function (data, index, e) {
+        if (props.expandOnHover) {
+            setHoveredIndex(index);
+        }
+        if (props.onPieHover) {
+            props.onPieHover(data, index, e);
+        }
+    };
+    var center = props.viewBoxSize / 2;
+    var offset = props.expandOnHover ? props.expandSize : 0;
+    var piesData = transformPiesData(data, props.expandOnHover, hoveredIndex);
+    return piesData && piesData.length > 0 ? (React.createElement("svg", { viewBox: "0 0 " + (viewBoxSize + offset * 2) + " " + (viewBoxSize + offset * 2) },
+        React.createElement("g", { transform: "translate(" + offset + ", " + offset + ")" },
+            React.createElement(Pies, __assign({}, props, { center: center, data: piesData, onHover: hanldePieHover }))))) : null;
+};
+PieChart.defaultProps = {
+    viewBoxSize: 100,
+    expandOnHover: true,
+    expandSize: 3,
+    onPieHover: function () { return null; },
+    shrinkOnTouchEnd: false,
+    strokeColor: '#fff',
+    strokeLinejoin: 'round',
+    strokeWidth: 0,
+    transitionDuration: '0s',
+    transitionTimingFunction: 'ease-out',
+};
+
+export { PieChart };

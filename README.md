@@ -1,6 +1,6 @@
 # Reacr Svg Charts
 
-### Pie Chart
+## Pie Chart
 
 
 
