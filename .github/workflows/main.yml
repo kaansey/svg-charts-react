@@ -8,14 +8,29 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    strategy:
+      matrix:
+        node-version: [12.x]
     steps:
     - uses: actions/checkout@v1
-    
-    - name: Build & Deploy to GitHub Pages
-      working-directory: ./example    
-      env: 
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        BRANCH: master # The branch the action should deploy to.
+
+    - name: Install Dependencies
+      working-directory: ./example
+      run: npm install
+      
+    - name: Build
+      working-directory: ./example
+      run: npm run build
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_REPOSITORY: ${{ secrets.GITHUB_REPOSITORY }}
-        GITHUB_ACTOR: ${{ secrets.GITHUB_ACTOR }}
-      uses: BryanSchuetz/jekyll-deploy-gh-pages@master
+        BRANCH: gh-pages
+        FOLDER: example/build
+
