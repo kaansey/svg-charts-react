@@ -13,6 +13,7 @@ jobs:
         node-version: [8.x, 10.x, 12.x]
     steps:
     - uses: actions/checkout@v1
+    
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -20,10 +21,15 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
         FOLDER: example # The folder the action should deploy.
+
     - name: Install Packages
+      working-directory: ./example
       run: npm run predeploy
+      
     - name: Deploy to GH Pages
+      working-directory: ./example
       run: npm run deploy
+      
     - name: Updating Domain
       run: echo "Update domain"
       
