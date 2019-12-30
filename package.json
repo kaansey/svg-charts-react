@@ -1,6 +1,10 @@
 {
   "name": "svg-charts-react",
   "version": "0.0.1",
+  "author": {
+    "name": "Kaan Seyitogullari",
+    "email": "kaanse@hotmail.com"
+  },
   "keywords": [
     "react",
     "pie",
@@ -13,8 +17,7 @@
   "module": "dist/index.esm.js",
   "license": "MIT",
   "repository": {
-    "url": "",
-    "type": ""
+    "url": "https://github.com/kaansey/svg-charts-react/",
   },
   "files": [
     "dist"
@@ -33,7 +36,6 @@
   "devDependencies": {
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
-    "@types/styled-components": "^4.4.0",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
     "concurrently": "^5.0.0",

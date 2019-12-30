@@ -1,9 +1,15 @@
-{
+{ 
   "homepage": "https://kaansey.github.io/svg-charts-react",
+  "repo": "https://github.com/kaansey/svg-charts-react/",
   "name": "example-svg-charts-react",
   "version": "0.1.0",
+  "author": {
+    "name": "Kaan Seyitogullari",
+    "email": "kaanse@hotmail.com"
+  },
   "dependencies": {
     "react": "^16.12.0",
+    "react-demo-page": "^0.3.5",
     "react-dom": "^16.12.0",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.1"

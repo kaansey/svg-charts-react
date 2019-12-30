@@ -45,6 +45,7 @@ var getPath = function (_a) {
     var path = "\n          M" + center + " " + center + ",\n          L" + center + " " + (center - radius) + ",\n          A" + radius + " " + radius + ",\n          0 " + la + " 1,\n          " + x + " " + y + "Z";
     return path;
 };
+//# sourceMappingURL=utils.js.map
 
 var decimals = 4;
 var offset = 0;
@@ -77,6 +78,7 @@ var Pies = function (_a) {
             } }, d.title && React.createElement("title", null, d.title)))));
     });
 };
+//# sourceMappingURL=Pies.js.map
 
 var PieChart = function (props) {
     var data = props.data, viewBoxSize = props.viewBoxSize;
