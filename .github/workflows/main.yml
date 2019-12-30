@@ -24,7 +24,7 @@ jobs:
 
     - name: Install Packages
       working-directory: ./example
-      run: npm run predeploy
+      run: npm run build
       
     - name: Deploy to GH Pages
       working-directory: ./example
