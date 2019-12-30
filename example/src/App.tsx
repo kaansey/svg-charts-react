@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div>
         <PieChartWrapper>
-          <h2>Pie - Chart</h2>
+          <h2>Pie - Chart sample</h2>
           <PieChart
             data={data}
             onPieHover={(data, index, event) => {
