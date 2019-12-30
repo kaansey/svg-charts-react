@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/svg-charts-react/static/css/main.795991f2.chunk.css",
+    "main.css": "/svg-charts-react/static/css/main.4052b242.chunk.css",
     "main.js": "/svg-charts-react/static/js/main.1ca24bb3.chunk.js",
     "main.js.map": "/svg-charts-react/static/js/main.1ca24bb3.chunk.js.map",
     "runtime-main.js": "/svg-charts-react/static/js/runtime-main.1b28eb0e.js",
@@ -9,16 +9,16 @@
     "static/js/2.233f38fb.chunk.js": "/svg-charts-react/static/js/2.233f38fb.chunk.js",
     "static/js/2.233f38fb.chunk.js.map": "/svg-charts-react/static/js/2.233f38fb.chunk.js.map",
     "index.html": "/svg-charts-react/index.html",
-    "precache-manifest.e7e37468a69d897a0d631afc9c91c911.js": "/svg-charts-react/precache-manifest.e7e37468a69d897a0d631afc9c91c911.js",
+    "precache-manifest.3aa0993a79fb97067e3df6bc3702d1c8.js": "/svg-charts-react/precache-manifest.3aa0993a79fb97067e3df6bc3702d1c8.js",
     "service-worker.js": "/svg-charts-react/service-worker.js",
     "static/css/2.b4719924.chunk.css.map": "/svg-charts-react/static/css/2.b4719924.chunk.css.map",
-    "static/css/main.795991f2.chunk.css.map": "/svg-charts-react/static/css/main.795991f2.chunk.css.map"
+    "static/css/main.4052b242.chunk.css.map": "/svg-charts-react/static/css/main.4052b242.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.1b28eb0e.js",
     "static/css/2.b4719924.chunk.css",
     "static/js/2.233f38fb.chunk.js",
-    "static/css/main.795991f2.chunk.css",
+    "static/css/main.4052b242.chunk.css",
     "static/js/main.1ca24bb3.chunk.js"
   ]
 }
