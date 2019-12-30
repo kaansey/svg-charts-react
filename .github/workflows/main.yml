@@ -15,7 +15,7 @@ jobs:
     - name: Build and Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
       with:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
         TARGET_FOLDER: example
         FOLDER: example/build # The folder the action should deploy.
