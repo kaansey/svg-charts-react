@@ -25,7 +25,10 @@ jobs:
       
     - name: Deploy to GH Pages
       working-directory: ./example
-      run: npm run deploy
+      run: |
+        git config --global user.email "kaanse@hotmail.com"
+        git config --global user.name "kaansey"
+        npm run deploy
       
     - name: Updating Domain
       run: echo "Update domain"
