@@ -16,9 +16,6 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "license": "MIT",
-  "repository": {
-    "url": "https://github.com/kaansey/svg-charts-react/",
-  },
   "files": [
     "dist"
   ],
