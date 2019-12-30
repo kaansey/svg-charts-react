@@ -29,13 +29,10 @@ jobs:
       
     - name: Deploy to GH Pages
       working-directory: ./example
-      run: npm run deploy
-    
-    - name: Commit files
       run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git commit -m "Add changes" -a
+        git config --global user.email "action@github.com"
+        git config --global user.name "GitHub Action"
+        npm run deploy
       
     - name: Updating Domain
       run: echo "Update domain"
