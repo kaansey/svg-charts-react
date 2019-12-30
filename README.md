@@ -1,4 +1,4 @@
-# React Svg Charts
+# Svg Charts React
 
 [![npm package][npm-badge]][npm]
 
