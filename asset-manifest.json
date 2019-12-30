@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/svg-charts-react/static/css/main.795991f2.chunk.css",
-    "main.js": "/svg-charts-react/static/js/main.70ab4151.chunk.js",
-    "main.js.map": "/svg-charts-react/static/js/main.70ab4151.chunk.js.map",
+    "main.js": "/svg-charts-react/static/js/main.893e0dba.chunk.js",
+    "main.js.map": "/svg-charts-react/static/js/main.893e0dba.chunk.js.map",
     "runtime-main.js": "/svg-charts-react/static/js/runtime-main.5d868142.js",
     "runtime-main.js.map": "/svg-charts-react/static/js/runtime-main.5d868142.js.map",
     "static/css/2.b4719924.chunk.css": "/svg-charts-react/static/css/2.b4719924.chunk.css",
     "static/js/2.3c87b441.chunk.js": "/svg-charts-react/static/js/2.3c87b441.chunk.js",
     "static/js/2.3c87b441.chunk.js.map": "/svg-charts-react/static/js/2.3c87b441.chunk.js.map",
     "index.html": "/svg-charts-react/index.html",
-    "precache-manifest.9377b10741e1bbe1bc51c99f9a8998b5.js": "/svg-charts-react/precache-manifest.9377b10741e1bbe1bc51c99f9a8998b5.js",
+    "precache-manifest.cc272fdc01abf12d5e0f7bd152a35d76.js": "/svg-charts-react/precache-manifest.cc272fdc01abf12d5e0f7bd152a35d76.js",
     "service-worker.js": "/svg-charts-react/service-worker.js",
     "static/css/2.b4719924.chunk.css.map": "/svg-charts-react/static/css/2.b4719924.chunk.css.map",
     "static/css/main.795991f2.chunk.css.map": "/svg-charts-react/static/css/main.795991f2.chunk.css.map"
@@ -19,6 +19,6 @@
     "static/css/2.b4719924.chunk.css",
     "static/js/2.3c87b441.chunk.js",
     "static/css/main.795991f2.chunk.css",
-    "static/js/main.70ab4151.chunk.js"
+    "static/js/main.893e0dba.chunk.js"
   ]
 }
