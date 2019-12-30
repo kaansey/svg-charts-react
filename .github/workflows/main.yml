@@ -26,8 +26,8 @@ jobs:
     - name: Build & Deploy
       working-directory: ./example
       run: |
-        git config --global user.email "${GITHUB_ACTOR}@hotmail.com"
-        git config --global user.name "${GITHUB_ACTOR}"
+        git remote add github "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+        git pull github ${GITHUB_REF} --ff-only
         npm run deploy
       env: 
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
