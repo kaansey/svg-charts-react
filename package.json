@@ -1,6 +1,14 @@
 {
   "name": "svg-charts-react",
   "version": "0.0.1",
+  "keywords": [
+    "react",
+    "pie",
+    "piechart",
+    "chart",
+    "responsive",
+    "svg"
+  ],
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "license": "MIT",
