@@ -1,0 +1,33 @@
+name: Build and Deploy the Example Project
+
+on:
+  push:	
+    branches:	
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+        BRANCH: master # The branch the action should deploy to.
+
+    - name: Install Dependencies
+      working-directory: ./example
+      run: npm install
+      
+    - name: Build & Deploy
+      working-directory: ./example
+      run: |
+        git config --global user.email "${GITHUB_ACTOR}@hotmail.com"
+        git config --global user.name "${GITHUB_ACTOR}"
+        npm run deploy
+      env: 
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
