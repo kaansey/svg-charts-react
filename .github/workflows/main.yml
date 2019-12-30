@@ -17,15 +17,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        BRANCH: master # The branch the action should deploy to.
-
-    - name: Install Dependencies
-      working-directory: ./example
-      run: npm install
-      
-    - name: Build & Deploy
-      working-directory: ./example
-      run: npm run deploy
-      env: 
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
+    - name: Build and Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v3
+      with:
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        BRANCH: gh-pages # The branch the action should deploy to.
+        FOLDER: build # The folder the action should deploy.
+        TARGET_FOLDER: ./example
