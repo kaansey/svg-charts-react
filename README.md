@@ -1,6 +1,6 @@
 # Svg Charts React
 
-[![npm package][npm-badge]][npm]
+[![npm package][npm-badge]][npm] ![Module formats][module-formats]
 
 ### Installation
 Add `svg-charts-react` dependency
@@ -25,3 +25,4 @@ This project is licensed under the MIT License - see the
 
 [npm-badge]: https://img.shields.io/npm/v/svg-charts-react?style=flat-square
 [npm]: https://www.npmjs.com/package/svg-charts-react
+[module-formats]: https://img.shields.io/badge/module%20formats-umd%2C%20cjs%2C%20esm-green.svg?style=flat-square
