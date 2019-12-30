@@ -14,7 +14,8 @@ npm install svg-charts-react --save
 
 Todos:
 
-- [ ] line charts
+- [ ] line chart
+- [ ] bar chart
 
 
 ## License
