@@ -16,7 +16,6 @@ const sampleData = [
 const routes = [
   {
     path: '/',
-    exact: true,
     demo: {
       component: (
         <PieChart
@@ -31,6 +30,7 @@ const routes = [
         />
       ),
       hiddenProps: ['data', 'onPieHover'],
+      // html: html,
     },
     label: 'Demo',
   },
