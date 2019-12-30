@@ -26,6 +26,12 @@ jobs:
     - name: Install Packages
       working-directory: ./example
       run: npm install
+    
+    - name: Commit files
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git commit -m "Add changes" -a
       
     - name: Deploy to GH Pages
       working-directory: ./example
