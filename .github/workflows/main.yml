@@ -20,5 +20,6 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
 
-    - name: Install Packages
-      run: npm run deploy-example
+    - name: deploy
+      working-directory: ./example
+      run: npm run deploy
