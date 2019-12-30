@@ -8,13 +8,17 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+        
     steps:
     - uses: actions/checkout@v1
-    
-    - name: Use Node.js 12.x
+    - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: 12.x
+        node-version: ${{ matrix.node-version }}
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
         FOLDER: example # The folder the action should deploy.
@@ -25,11 +29,8 @@ jobs:
       
     - name: Deploy to GH Pages
       working-directory: ./example
-      run: |
-        git config --global user.email "kaanse@hotmail.com"
-        git config --global user.name "kaansey"
-        npm run deploy
+      run: npm run deploy
       
     - name: Updating Domain
       run: echo "Update domain"
-      
+
