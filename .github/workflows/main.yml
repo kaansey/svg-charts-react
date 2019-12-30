@@ -17,5 +17,5 @@ jobs:
       with:
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         BRANCH: master # The branch the action should deploy to.
-        TARGET_FOLDER: example
-        FOLDER: example/build # The folder the action should deploy.
+        FOLDER: example # The folder the action should deploy.
+        TARGET_FOLDER: example/build
