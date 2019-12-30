@@ -30,7 +30,6 @@ jobs:
     - name: Deploy to GH Pages
       working-directory: ./example
       run: npm run deploy
-      id: 
     
     - name: Commit files
       run: |
