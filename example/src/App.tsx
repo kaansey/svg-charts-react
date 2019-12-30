@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDemoPage from 'react-demo-page';
-import pkg from '../package.json';
+import styled from 'styled-components';
 
-// import { TestComponent } from './reactComponentLib';
 import { PieChart } from './libs';
+
+const PieWrapperDiv = styled.div`
+  width: 300px;
+  height: 300px;
+`;
 
 const sampleData = [
   { title: 'Data 1', value: 100, color: '#4d8af0' },
@@ -13,41 +16,22 @@ const sampleData = [
   { title: 'Data 5', value: 10, color: '#95d2ff' },
 ];
 
-const routes = [
-  {
-    path: '/',
-    demo: {
-      component: (
-        <PieChart
-          data={sampleData}
-          onPieHover={(data, index, event) => {
-            if (data) {
-              console.log('On Mouse Hover', { data, index, event });
-            } else {
-              console.log('On Mouse Leave:', { index, event });
-            }
-          }}
-        />
-      ),
-      hiddenProps: ['data', 'onPieHover'],
-      // html: html,
-    },
-    label: 'Demo',
-  },
-];
-
-const header = {
-  title: 'SVG Charts React',
-  buttons: [
-    { label: 'Github', url: pkg.repo },
-    { label: 'Npm', url: `https://www.npmjs.com/package/${pkg.name}` },
-  ],
+const App = () => {
+  return (
+    <PieWrapperDiv>
+      <h3>Pie chart sample</h3>
+      <PieChart
+        data={sampleData}
+        onPieHover={(data, index, event) => {
+          if (data) {
+            console.log('On Mouse Hover', { data, index, event });
+          } else {
+            console.log('On Mouse Leave:', { index, event });
+          }
+        }}
+      />
+    </PieWrapperDiv>
+  );
 };
-
-const footer = {
-  author: pkg.author,
-};
-
-const App = () => <ReactDemoPage basename={pkg.name} header={header} footer={footer} pages={routes} color="#3498db" />;
 
 export default App;
