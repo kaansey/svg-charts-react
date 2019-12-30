@@ -26,6 +26,9 @@ jobs:
       
     - name: Build & Deploy
       working-directory: ./example
-      run: npm run deploy
+      run: |
+        git config --global user.email "action@github.com"
+        git config --global user.name "Github Action"
+        npm run deploy
       env: 
         ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
