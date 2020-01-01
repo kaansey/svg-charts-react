@@ -7,8 +7,10 @@
     "email": "kaanse@hotmail.com"
   },
   "dependencies": {
+    "polished": "^3.4.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
+    "react-live": "^2.2.2",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.1"
   },
