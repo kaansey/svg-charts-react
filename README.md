@@ -2,6 +2,9 @@
 
 [![npm package][npm-badge]][npm] ![Module formats][module-formats]
 
+### Demo
+https://kaansey.github.io/svg-charts-react/
+
 ### Installation
 Add `svg-charts-react` dependency
 ```bash
