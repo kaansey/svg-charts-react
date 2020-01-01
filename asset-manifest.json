@@ -1,18 +1,19 @@
 {
   "files": {
-    "main.js": "/svg-charts-react/static/js/main.732a6e36.chunk.js",
-    "main.js.map": "/svg-charts-react/static/js/main.732a6e36.chunk.js.map",
+    "main.js": "/svg-charts-react/static/js/main.08c8264b.chunk.js",
+    "main.js.map": "/svg-charts-react/static/js/main.08c8264b.chunk.js.map",
     "runtime-main.js": "/svg-charts-react/static/js/runtime-main.1b28eb0e.js",
     "runtime-main.js.map": "/svg-charts-react/static/js/runtime-main.1b28eb0e.js.map",
-    "static/js/2.48decec1.chunk.js": "/svg-charts-react/static/js/2.48decec1.chunk.js",
-    "static/js/2.48decec1.chunk.js.map": "/svg-charts-react/static/js/2.48decec1.chunk.js.map",
+    "static/js/2.7e7fdf9a.chunk.js": "/svg-charts-react/static/js/2.7e7fdf9a.chunk.js",
+    "static/js/2.7e7fdf9a.chunk.js.map": "/svg-charts-react/static/js/2.7e7fdf9a.chunk.js.map",
     "index.html": "/svg-charts-react/index.html",
-    "precache-manifest.8a43d84a3cc13e21a6e78c4f077311b1.js": "/svg-charts-react/precache-manifest.8a43d84a3cc13e21a6e78c4f077311b1.js",
-    "service-worker.js": "/svg-charts-react/service-worker.js"
+    "precache-manifest.97b9d766e17afbccedd29998125e4808.js": "/svg-charts-react/precache-manifest.97b9d766e17afbccedd29998125e4808.js",
+    "service-worker.js": "/svg-charts-react/service-worker.js",
+    "static/media/statistics.svg": "/svg-charts-react/static/media/statistics.5d9093cb.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.1b28eb0e.js",
-    "static/js/2.48decec1.chunk.js",
-    "static/js/main.732a6e36.chunk.js"
+    "static/js/2.7e7fdf9a.chunk.js",
+    "static/js/main.08c8264b.chunk.js"
   ]
 }
