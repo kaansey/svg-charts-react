@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const MenuDiv = styled.div`
   width: 145px;
-  padding: 24px 15px 0 8px;
+  padding: 24px 15px 0 0;
 `;
 
 const ContentDiv = styled.div`

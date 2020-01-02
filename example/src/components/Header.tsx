@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import logo from '../assets/statistics.svg';
 
 const HeaderWrapper = styled.div`
-  width: 100%;
-  padding: 8px;
+  padding: 0 8px;
   border-bottom: 1px solid #edf2f7;
 `;
 
@@ -26,7 +25,7 @@ const LinkDiv = styled.div`
 `;
 
 const LinkA = styled.a`
-  margin: 0 10px;
+  margin-left: 10px;
 `;
 
 const LogoImg = styled.img`
