@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import logo from '../assets/statistics.svg';
 
 const HeaderWrapper = styled.div`
-  padding: 0 8px;
+  padding: 8px 0;
   border-bottom: 1px solid #edf2f7;
 `;
 

@@ -16,7 +16,7 @@ const Wrapper = styled.div`
     font-size: 12px;
     text-align: left;
     textarea {
-      background: #fff !important;
+      background: #313b48 !important;
     }
   }
 `;

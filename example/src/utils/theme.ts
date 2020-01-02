@@ -1,57 +1,64 @@
 const theme = {
   plain: {
-    color: '#90a4ae',
-    backgroundColor: '#fafafa',
+    color: '#e7d2ed',
   },
   styles: [
     {
-      types: ['comment', 'punctuation', 'string'],
+      types: ['prolog', 'comment', 'doctype', 'cdata'],
       style: {
-        color: 'rgb(144, 164, 174)',
+        color: 'hsl(30, 20%, 50%)',
+      },
+    },
+    {
+      types: ['property', 'tag', 'boolean', 'number', 'constant', 'symbol'],
+      style: { color: '#f677e1' },
+    },
+    {
+      types: ['attr-name', 'string', 'char', 'builtin', 'insterted'],
+      style: {
+        color: 'hsl(75, 70%, 70%)',
+      },
+    },
+    {
+      types: ['operator', 'entity', 'url', 'string', 'variable', 'language-css'],
+      style: {
+        color: 'hsl(40, 90%, 70%)',
+      },
+    },
+    {
+      types: ['deleted'],
+      style: {
+        color: 'rgb(255, 85, 85)',
+      },
+    },
+    {
+      types: ['italic'],
+      style: {
         fontStyle: 'italic',
       },
     },
     {
-      types: ['variable'],
+      types: ['important', 'bold'],
       style: {
-        color: 'rgb(144, 164, 174)',
+        fontWeight: 'bold',
       },
     },
     {
-      types: ['constant', 'changed'],
+      types: ['regex', 'important'],
       style: {
-        color: 'rgb(255, 182, 44)',
+        color: '#e90',
       },
     },
     {
-      types: ['keyword', 'number', 'char'],
+      types: ['atrule', 'attr-value', 'keyword'],
       style: {
-        color: 'rgb(247, 109, 71)',
+        color: '#f677e1',
       },
     },
     {
-      types: ['tag', 'deleted', 'builtin'],
+      types: ['punctuation', 'symbol'],
       style: {
-        color: 'rgb(255, 83, 112)',
-      },
-    },
-    {
-      types: ['function'],
-      style: {
-        color: 'rgb(97, 130, 184)',
-      },
-    },
-    {
-      types: ['symbol', 'inserted'],
-      style: {
-        color: 'rgb(145, 184, 89)',
-      },
-    },
-    {
-      types: ['attr-name'],
-      style: {
-        color: 'rgb(124, 77, 255)',
-        fontStyle: 'italic',
+        opacity: '0.7',
       },
     },
   ],
