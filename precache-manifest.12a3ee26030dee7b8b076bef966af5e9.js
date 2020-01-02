@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "26a6081fb3b4da23e0716bca94c58c55",
+    "revision": "c6ed47f15dfe26e6e7155c81e20fb530",
     "url": "/svg-charts-react/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/svg-charts-react/static/js/2.7e7fdf9a.chunk.js"
   },
   {
-    "revision": "6b32e872e4cbd591babd",
-    "url": "/svg-charts-react/static/js/main.08c8264b.chunk.js"
+    "revision": "a1c3ed655ed3a0903e7d",
+    "url": "/svg-charts-react/static/js/main.74fd6e66.chunk.js"
   },
   {
     "revision": "762ea1caf546c99c99d0",
