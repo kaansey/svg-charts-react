@@ -1,10 +1,28 @@
 import React from 'react'
+
 import { getPath } from './utils'
+import {
+  TransitionTimingFunction,
+  TransitionDuration,
+  PieChartData,
+} from '../../types/common'
 
 const decimals = 4
 let offset = 0
 
-const Pies = ({
+interface PiesPorps {
+  center: number
+  data: Array<PieChartData>
+  onHover(data: PieChartData, index: number, e: any): void
+  expandSize?: number
+  strokeColor?: string
+  strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit'
+  strokeWidth?: number
+  transitionDuration?: TransitionDuration
+  transitionTimingFunction?: TransitionTimingFunction
+}
+
+const Pies: React.FC<PiesPorps> = ({
   center,
   data,
   onHover,
@@ -14,13 +32,13 @@ const Pies = ({
   strokeLinejoin,
   transitionTimingFunction,
   transitionDuration,
-}: any) => {
+}): any => {
   const total = data.reduce(
-    (prev: any, current: any) => current.value + prev,
+    (prev: number, current: PieChartData) => current.value + prev,
     0
   )
 
-  const handleOnHover = (d: any, index: any) => (e: any) => {
+  const handleOnHover = (d: PieChartData, index: number) => (e: any) => {
     onHover(d, index, e)
   }
 
@@ -28,7 +46,7 @@ const Pies = ({
     return null
   }
 
-  return data.map((d: any, index: any) => {
+  return data.map((d: PieChartData, index: number) => {
     const radius = center + (d.hovered ? expandSize : 0) - strokeWidth / 2
 
     const path = getPath({

@@ -1,4 +1,5 @@
-export declare const transformPiesData: (data: any[], expandOnHover: boolean, hoveredIndex: number) => any[];
+import { PieChartData } from '../../types/common';
+export declare const transformPiesData: (data: PieChartData[], expandOnHover: boolean, hoveredIndex: number) => PieChartData[];
 export declare const getPath: ({ total, radius, value, center, decimals, }: {
     total: number;
     radius: number;

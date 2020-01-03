@@ -4,28 +4,33 @@ import { transformPiesData } from './utils'
 import {
   TransitionTimingFunction,
   TransitionDuration,
-} from '../../types/transition'
+  PieChartData,
+} from '../../types/common'
 
 interface PieChartProps {
-  data: Array<any>
+  data: Array<PieChartData>
   viewBoxSize?: number
   expandOnHover?: boolean
   expandSize?: number
   shrinkOnTouchEnd?: boolean
   strokeColor?: string
-  strokeLinejoin?: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round'
+  strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit'
   strokeWidth?: number
   transitionDuration?: TransitionDuration
   transitionTimingFunction?: TransitionTimingFunction
-  onPieHover?(data: Array<any>, index: number, e: any): void
+  onPieHover?(data: PieChartData, index: number, e: EventTarget): void
 }
 
-const PieChart: React.SFC<PieChartProps> = props => {
+const PieChart: React.FC<PieChartProps> = props => {
   const { data, viewBoxSize } = props
 
   const [hoveredIndex, setHoveredIndex] = useState()
 
-  const hanldePieHover = (data: any, index: any, e: any) => {
+  const hanldePieHover = (
+    data: PieChartData,
+    index: number,
+    e: EventTarget
+  ) => {
     if (props.expandOnHover) {
       setHoveredIndex(index)
     }
@@ -46,10 +51,15 @@ const PieChart: React.SFC<PieChartProps> = props => {
     >
       <g transform={`translate(${offset}, ${offset})`}>
         <Pies
-          {...props}
           center={center}
           data={piesData}
           onHover={hanldePieHover}
+          expandSize={props.expandSize}
+          strokeColor={props.strokeColor}
+          strokeLinejoin={props.strokeLinejoin}
+          strokeWidth={props.strokeWidth}
+          transitionDuration={props.transitionDuration}
+          transitionTimingFunction={props.transitionTimingFunction}
         />
       </g>
     </svg>
@@ -60,7 +70,8 @@ PieChart.defaultProps = {
   viewBoxSize: 100,
   expandOnHover: true,
   expandSize: 3,
-  onPieHover: () => null,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onPieHover: () => {},
   shrinkOnTouchEnd: false,
   strokeColor: '#fff',
   strokeLinejoin: 'round',

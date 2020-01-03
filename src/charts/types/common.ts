@@ -1,3 +1,10 @@
+export type PieChartData = {
+  title?: string
+  value: number
+  color?: string
+  hovered?: boolean
+}
+
 export type TransitionDuration = string
 export type TransitionTimingFunction =
   | 'ease'

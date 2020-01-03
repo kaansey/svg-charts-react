@@ -1,5 +1,7 @@
+import { PieChartData } from '../../types/common'
+
 export const transformPiesData = (
-  data: Array<any>,
+  data: Array<PieChartData>,
   expandOnHover: boolean,
   hoveredIndex: number
 ) => {

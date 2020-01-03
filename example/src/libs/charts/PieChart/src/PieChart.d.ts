@@ -1,17 +1,17 @@
 import React from 'react';
-import { TransitionTimingFunction, TransitionDuration } from '../../types/transition';
+import { TransitionTimingFunction, TransitionDuration, PieChartData } from '../../types/common';
 interface PieChartProps {
-    data: Array<any>;
+    data: Array<PieChartData>;
     viewBoxSize?: number;
     expandOnHover?: boolean;
     expandSize?: number;
     shrinkOnTouchEnd?: boolean;
     strokeColor?: string;
-    strokeLinejoin?: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round';
+    strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit';
     strokeWidth?: number;
     transitionDuration?: TransitionDuration;
     transitionTimingFunction?: TransitionTimingFunction;
-    onPieHover?(data: Array<any>, index: number, e: any): void;
+    onPieHover?(data: PieChartData, index: number, e: EventTarget): void;
 }
-declare const PieChart: React.SFC<PieChartProps>;
+declare const PieChart: React.FC<PieChartProps>;
 export default PieChart;
