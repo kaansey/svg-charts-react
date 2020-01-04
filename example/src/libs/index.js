@@ -28,7 +28,10 @@ var __assign = function() {
 };
 
 var transformPiesData = function (data, expandOnHover, hoveredIndex) {
-    var filteredData = data.filter(function (d) { return d.value > 0; });
+    var filteredData = data
+        .filter(function (d) { return d.value > 0; })
+        .sort(function (a, b) { return b.value - a.value; });
+    console.log(filteredData);
     if (filteredData.length) {
         return expandOnHover
             ? filteredData.map(function (item, index) { return (__assign(__assign({}, item), { hovered: index === hoveredIndex })); })
@@ -45,7 +48,41 @@ var getPath = function (_a) {
     var path = "\n          M" + center + " " + center + ",\n          L" + center + " " + (center - radius) + ",\n          A" + radius + " " + radius + ",\n          0 " + la + " 1,\n          " + x + " " + y + "Z";
     return path;
 };
-//# sourceMappingURL=utils.js.map
+var colorToHex = function (color) {
+    var staticColors = {
+        blue: '#4d8af0',
+        red: '#cc3333',
+        green: '#2e8f59',
+        yellow: '#a3a328',
+    };
+    return color in staticColors ? staticColors[color] : staticColors.blue;
+};
+var lightenColor = function (color, percent) {
+    var num = parseInt(color.replace('#', ''), 16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, B = ((num >> 8) & 0x00ff) + amt, G = (num & 0x0000ff) + amt;
+    return ('#' +
+        (0x1000000 +
+            (R < 255 ? (R < 1 ? 0 : R) : 255) * 0x10000 +
+            (B < 255 ? (B < 1 ? 0 : B) : 255) * 0x100 +
+            (G < 255 ? (G < 1 ? 0 : G) : 255))
+            .toString(16)
+            .slice(1));
+};
+var assignPiesColor = function (data, _a) {
+    var color = _a.color, _b = _a.diffPercentage, diffPercentage = _b === void 0 ? 3 : _b;
+    var colorTone = color.startsWith('#') ? color : colorToHex(color);
+    var firstPie = data[0];
+    if (!firstPie.color) {
+        firstPie.color = colorTone;
+        colorTone = lightenColor(colorTone, diffPercentage);
+    }
+    for (var i = 1; i < data.length; i++) {
+        if (!data[i].color) {
+            data[i].color = colorTone;
+            colorTone = lightenColor(colorTone, diffPercentage);
+        }
+    }
+    return data;
+};
 
 var decimals = 4;
 var offset = 0;
@@ -93,6 +130,9 @@ var PieChart = function (props) {
     var center = props.viewBoxSize / 2;
     var offset = props.expandOnHover ? props.expandSize : 0;
     var piesData = transformPiesData(data, props.expandOnHover, hoveredIndex);
+    if (props.colorTone) {
+        piesData = assignPiesColor(piesData, props.colorTone);
+    }
     return piesData && piesData.length > 0 ? (React.createElement("svg", { viewBox: "0 0 " + (viewBoxSize + offset * 2) + " " + (viewBoxSize + offset * 2) },
         React.createElement("g", { transform: "translate(" + offset + ", " + offset + ")" },
             React.createElement(Pies, { center: center, data: piesData, onHover: hanldePieHover, expandSize: props.expandSize, strokeColor: props.strokeColor, strokeLinejoin: props.strokeLinejoin, strokeWidth: props.strokeWidth, transitionDuration: props.transitionDuration, transitionTimingFunction: props.transitionTimingFunction })))) : null;

@@ -14,3 +14,10 @@ export type TransitionTimingFunction =
   | 'linear'
   | 'step-start'
   | 'step-end'
+
+export type StrokeLinejoin = 'miter' | 'round' | 'bevel' | 'inherit'
+
+export type ColorTone = {
+  color: 'blue' | 'red' | 'green' | 'yellow' | string
+  diffPercentage?: number
+}

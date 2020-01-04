@@ -1,10 +1,12 @@
 import React, { useState } from 'react'
 import Pies from './Pies'
-import { transformPiesData } from './utils'
+import { transformPiesData, assignPiesColor } from './utils'
 import {
   TransitionTimingFunction,
   TransitionDuration,
   PieChartData,
+  StrokeLinejoin,
+  ColorTone,
 } from '../../types/common'
 
 interface PieChartProps {
@@ -14,11 +16,12 @@ interface PieChartProps {
   expandSize?: number
   shrinkOnTouchEnd?: boolean
   strokeColor?: string
-  strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit'
+  strokeLinejoin?: StrokeLinejoin
   strokeWidth?: number
   transitionDuration?: TransitionDuration
   transitionTimingFunction?: TransitionTimingFunction
   onPieHover?(data: PieChartData, index: number, e: EventTarget): void
+  colorTone?: ColorTone
 }
 
 const PieChart: React.FC<PieChartProps> = props => {
@@ -43,7 +46,11 @@ const PieChart: React.FC<PieChartProps> = props => {
   const center = props.viewBoxSize / 2
   const offset = props.expandOnHover ? props.expandSize : 0
 
-  const piesData = transformPiesData(data, props.expandOnHover, hoveredIndex)
+  let piesData = transformPiesData(data, props.expandOnHover, hoveredIndex)
+
+  if (props.colorTone) {
+    piesData = assignPiesColor(piesData, props.colorTone)
+  }
 
   return piesData && piesData.length > 0 ? (
     <svg

@@ -11,6 +11,7 @@ const GlobalStyle = createGlobalStyle`
     padding: 0px;
     margin: 0px;
     width: 100%;
+    color: #2d3748;
   }
   a:link    {
     text-decoration:  none;
@@ -36,6 +37,11 @@ const GlobalStyle = createGlobalStyle`
     background-color: inherit;
     color: inherit;
     } 
+
+  p {
+    font-size: 15px;
+    line-height: 27px;
+  }
 `;
 
 ReactDOM.render(
