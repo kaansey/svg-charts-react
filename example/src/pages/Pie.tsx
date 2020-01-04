@@ -85,7 +85,7 @@ const Pie = () => {
       </p>
       <LiveEdit noInline code={PieChartComponent} scope={scope} theme={theme} />
       <h3>Sample with specific colors</h3>
-      <LiveEdit noInline code={PieChartWithColor} scope={scope} theme={theme} />;
+      <LiveEdit noInline code={PieChartWithColor} scope={scope} theme={theme} />
     </>
   );
 };
