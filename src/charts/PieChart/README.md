@@ -1,21 +1,5 @@
 # Pie Chart
 
-### Default values
-
-```js
-  viewBoxSize: 100,
-  expandOnHover: true,
-  expandSize: 3,
-  onPieHover: () => null,
-  shrinkOnTouchEnd: false,
-  strokeColor: '#fff',
-  strokeLinejoin: 'round',
-  strokeWidth: 0,
-  transitionDuration: '0s',
-  transitionTimingFunction: 'ease-out',
-  showTooltip: true
-```
-
 ### How to use
 
 ```js

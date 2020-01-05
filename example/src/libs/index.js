@@ -34,11 +34,9 @@ var COLORS = {
     GREEN: '#2e8f59',
     YELLOW: '#a3a328',
 };
-//# sourceMappingURL=colors.js.map
 
 var DECIMALS = 4;
 var PERCENTAGE_VALUE = 15.91549430919;
-//# sourceMappingURL=index.js.map
 
 var transformPiesData = function (data, expandOnHover, hoveredIndex) {
     var filteredData = data
@@ -94,7 +92,6 @@ var assignPiesColor = function (data, _a) {
     }
     return data;
 };
-//# sourceMappingURL=utils.js.map
 
 var offset = 0;
 var Pies = function (_a) {
@@ -136,7 +133,6 @@ var tooltipTemplate = function (props) {
             "%")));
 };
 var TooltipTemplate = React.memo(tooltipTemplate);
-//# sourceMappingURL=TooltipTemplate.js.map
 
 var PieChart = function (props) {
     var data = props.data, viewBoxSize = props.viewBoxSize;

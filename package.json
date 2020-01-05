@@ -1,8 +1,8 @@
 {
   "name": "svg-charts-react",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "author": "Kaan Seyitogullari",
-  "homepage": "https://github.com/kaansey/svg-charts-react",
+  "homepage": "https://kaansey.github.io/svg-charts-react/",
   "repository": {
     "type": "git",
     "url": "https://github.com/kaansey/svg-charts-react.git"
