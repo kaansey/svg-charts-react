@@ -1,5 +1,6 @@
 /* eslint-disable */
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import ReactTooltip from 'react-tooltip';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation. All rights reserved.
@@ -27,35 +28,45 @@ var __assign = function() {
     return __assign.apply(this, arguments);
 };
 
+var COLORS = {
+    BLUE: '#4d8af0',
+    RED: '#cc3333',
+    GREEN: '#2e8f59',
+    YELLOW: '#a3a328',
+};
+//# sourceMappingURL=colors.js.map
+
+var DECIMALS = 4;
+var PERCENTAGE_VALUE = 15.91549430919;
+//# sourceMappingURL=index.js.map
+
 var transformPiesData = function (data, expandOnHover, hoveredIndex) {
     var filteredData = data
         .filter(function (d) { return d.value > 0; })
         .sort(function (a, b) { return b.value - a.value; });
-    console.log(filteredData);
+    var total = data.reduce(function (prev, current) { return current.value + prev; }, 0);
     if (filteredData.length) {
         return expandOnHover
-            ? filteredData.map(function (item, index) { return (__assign(__assign({}, item), { hovered: index === hoveredIndex })); })
+            ? filteredData.map(function (item, index) {
+                var percentage = (Number((((item.value / total) * 360 * Math.PI) / 180).toFixed(DECIMALS)) * PERCENTAGE_VALUE).toFixed(2);
+                return __assign(__assign({}, item), { hovered: index === hoveredIndex, percentage: percentage });
+            })
             : filteredData;
     }
     return filteredData;
 };
 var getPath = function (_a) {
-    var total = _a.total, radius = _a.radius, value = _a.value, center = _a.center, decimals = _a.decimals;
-    var radians = Number((((value / total) * 360 * Math.PI) / 180).toFixed(decimals));
-    var x = (center + Math.sin(radians) * radius).toFixed(decimals);
-    var y = (center - Math.cos(radians) * radius).toFixed(decimals);
+    var total = _a.total, radius = _a.radius, value = _a.value, center = _a.center;
+    var radians = Number((((value / total) * 360 * Math.PI) / 180).toFixed(DECIMALS));
+    var x = (center + Math.sin(radians) * radius).toFixed(DECIMALS);
+    var y = (center - Math.cos(radians) * radius).toFixed(DECIMALS);
     var la = radians > Math.PI ? 1 : 0;
     var path = "\n          M" + center + " " + center + ",\n          L" + center + " " + (center - radius) + ",\n          A" + radius + " " + radius + ",\n          0 " + la + " 1,\n          " + x + " " + y + "Z";
     return path;
 };
 var colorToHex = function (color) {
-    var staticColors = {
-        blue: '#4d8af0',
-        red: '#cc3333',
-        green: '#2e8f59',
-        yellow: '#a3a328',
-    };
-    return color in staticColors ? staticColors[color] : staticColors.blue;
+    color = color.toUpperCase();
+    return color in COLORS ? COLORS[color] : COLORS.BLUE;
 };
 var lightenColor = function (color, percent) {
     var num = parseInt(color.replace('#', ''), 16), amt = Math.round(2.55 * percent), R = (num >> 16) + amt, B = ((num >> 8) & 0x00ff) + amt, G = (num & 0x0000ff) + amt;
@@ -83,8 +94,8 @@ var assignPiesColor = function (data, _a) {
     }
     return data;
 };
+//# sourceMappingURL=utils.js.map
 
-var decimals = 4;
 var offset = 0;
 var Pies = function (_a) {
     var center = _a.center, data = _a.data, onHover = _a.onHover, expandSize = _a.expandSize, strokeWidth = _a.strokeWidth, strokeColor = _a.strokeColor, strokeLinejoin = _a.strokeLinejoin, transitionTimingFunction = _a.transitionTimingFunction, transitionDuration = _a.transitionDuration;
@@ -102,9 +113,8 @@ var Pies = function (_a) {
             radius: radius,
             value: d.value,
             center: center,
-            decimals: decimals,
         });
-        var currentOffset = ((offset / total) * 360).toFixed(decimals);
+        var currentOffset = ((offset / total) * 360).toFixed(DECIMALS);
         offset += d.value;
         var isSinglePie = data.length === 1;
         return (React.createElement("g", { key: 'pie' + index, transform: "rotate(" + currentOffset + ", " + center + ", " + center + ")" }, isSinglePie ? ( // single pie
@@ -112,30 +122,52 @@ var Pies = function (_a) {
                 transitionProperty: 'all',
                 transitionTimingFunction: transitionTimingFunction,
                 transitionDuration: transitionDuration,
-            } }, d.title && React.createElement("title", null, d.title)))));
+            } }))));
     });
 };
+var Pies$1 = React.memo(Pies);
+
+var tooltipTemplate = function (props) {
+    return (React.createElement("div", null,
+        props.data.title,
+        ": ",
+        React.createElement("b", null,
+            props.data.percentage,
+            "%")));
+};
+var TooltipTemplate = React.memo(tooltipTemplate);
+//# sourceMappingURL=TooltipTemplate.js.map
 
 var PieChart = function (props) {
     var data = props.data, viewBoxSize = props.viewBoxSize;
     var _a = useState(), hoveredIndex = _a[0], setHoveredIndex = _a[1];
-    var hanldePieHover = function (data, index, e) {
-        if (props.expandOnHover) {
-            setHoveredIndex(index);
-        }
-        if (props.onPieHover) {
-            props.onPieHover(data, index, e);
-        }
-    };
     var center = props.viewBoxSize / 2;
     var offset = props.expandOnHover ? props.expandSize : 0;
     var piesData = transformPiesData(data, props.expandOnHover, hoveredIndex);
     if (props.colorTone) {
         piesData = assignPiesColor(piesData, props.colorTone);
     }
-    return piesData && piesData.length > 0 ? (React.createElement("svg", { viewBox: "0 0 " + (viewBoxSize + offset * 2) + " " + (viewBoxSize + offset * 2) },
-        React.createElement("g", { transform: "translate(" + offset + ", " + offset + ")" },
-            React.createElement(Pies, { center: center, data: piesData, onHover: hanldePieHover, expandSize: props.expandSize, strokeColor: props.strokeColor, strokeLinejoin: props.strokeLinejoin, strokeWidth: props.strokeWidth, transitionDuration: props.transitionDuration, transitionTimingFunction: props.transitionTimingFunction })))) : null;
+    var hanldePieHover = function (piesData, index, e) {
+        if (props.expandOnHover) {
+            setHoveredIndex(index);
+        }
+        if (props.onPieHover) {
+            props.onPieHover(piesData, index, e);
+        }
+    };
+    var getTooltipContent = useCallback(function () {
+        if (props.showTooltip && piesData[hoveredIndex]) {
+            var pieDetail = piesData[hoveredIndex];
+            var CustomTooltipTemplate = props.CustomTooltipTemplate;
+            return React.createElement(CustomTooltipTemplate, { data: pieDetail });
+        }
+        return null;
+    }, [hoveredIndex]);
+    return piesData && piesData.length > 0 ? (React.createElement(React.Fragment, null,
+        React.createElement("svg", { "data-tip": "", "data-for": "tooltip", viewBox: "0 0 " + (viewBoxSize + offset * 2) + " " + (viewBoxSize + offset * 2) },
+            React.createElement("g", { transform: "translate(" + offset + ", " + offset + ")" },
+                React.createElement(Pies$1, { center: center, data: piesData, onHover: hanldePieHover, expandSize: props.expandSize, strokeColor: props.strokeColor, strokeLinejoin: props.strokeLinejoin, strokeWidth: props.strokeWidth, transitionDuration: props.transitionDuration, transitionTimingFunction: props.transitionTimingFunction }))),
+        React.createElement(ReactTooltip, { id: "tooltip", getContent: getTooltipContent }))) : null;
 };
 PieChart.defaultProps = {
     viewBoxSize: 100,
@@ -149,6 +181,9 @@ PieChart.defaultProps = {
     strokeWidth: 0,
     transitionDuration: '0s',
     transitionTimingFunction: 'ease-out',
+    showTooltip: true,
+    CustomTooltipTemplate: TooltipTemplate,
 };
+var PieChart$1 = React.memo(PieChart);
 
-export { PieChart };
+export { PieChart$1 as PieChart };

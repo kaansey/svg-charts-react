@@ -1,5 +1,5 @@
 import React from 'react';
-import { TransitionTimingFunction, TransitionDuration, PieChartData, StrokeLinejoin, ColorTone } from '../../types/common';
+import { TransitionTimingFunction, TransitionDuration, PieChartData, StrokeLinejoin, ColorTone, CustomTooltipTemplateProps } from '../../types/common';
 interface PieChartProps {
     data: Array<PieChartData>;
     viewBoxSize?: number;
@@ -13,6 +13,8 @@ interface PieChartProps {
     transitionTimingFunction?: TransitionTimingFunction;
     onPieHover?(data: PieChartData, index: number, e: EventTarget): void;
     colorTone?: ColorTone;
+    showTooltip?: boolean;
+    CustomTooltipTemplate?: React.ComponentType<CustomTooltipTemplateProps>;
 }
-declare const PieChart: React.FC<PieChartProps>;
-export default PieChart;
+declare const _default: React.NamedExoticComponent<PieChartProps>;
+export default _default;

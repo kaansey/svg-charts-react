@@ -1,9 +1,11 @@
 {
   "name": "svg-charts-react",
   "version": "0.1.0",
-  "author": {
-    "name": "Kaan Seyitogullari",
-    "email": "kaanse@hotmail.com"
+  "author": "Kaan Seyitogullari",
+  "homepage": "https://github.com/kaansey/svg-charts-react",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kaansey/svg-charts-react.git"
   },
   "keywords": [
     "react",
@@ -33,6 +35,7 @@
   "devDependencies": {
     "@types/react": "^16.9.13",
     "@types/react-dom": "^16.9.4",
+    "@types/react-tooltip": "^3.11.0",
     "@typescript-eslint/eslint-plugin": "^2.9.0",
     "@typescript-eslint/parser": "^2.9.0",
     "concurrently": "^5.0.0",
@@ -51,6 +54,7 @@
   },
   "peerDependencies": {
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "react-tooltip": "^3.11.2"
   }
 }

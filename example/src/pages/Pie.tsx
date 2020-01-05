@@ -69,6 +69,27 @@ render(
 )
 `;
 
+const PieChartWithCustomTooltip = `
+const CustomTooltipTemplate = ({data}) => {
+  return (
+    <div>
+      <div>{data.title}</div>
+      <div>{data.percentage}</div>
+    </div>
+  );
+};
+
+render(
+  <Wrapper>
+    <PieChart
+      key={"pie-3"}
+      data = {sampleData}
+      CustomTooltipTemplate={CustomTooltipTemplate}
+    />
+  </Wrapper>
+)
+`;
+
 const Pie = () => {
   return (
     <>
@@ -86,6 +107,8 @@ const Pie = () => {
       <LiveEdit noInline code={PieChartComponent} scope={scope} theme={theme} />
       <h3>Sample with specific colors</h3>
       <LiveEdit noInline code={PieChartWithColor} scope={scope} theme={theme} />
+      <h3>Sample with cutom tooltip template</h3>
+      <LiveEdit noInline code={PieChartWithCustomTooltip} scope={scope} theme={theme} />
     </>
   );
 };

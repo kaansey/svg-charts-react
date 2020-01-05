@@ -14,7 +14,10 @@ module.exports = {
     },
   },
   rules: {
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_|^req|^next' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_|^req|^next' },
+    ],
     '@typescript-eslint/no-explicit-any': 0,
     '@typescript-eslint/explicit-function-return-type': 0,
     'react/prop-types': 0,
@@ -24,4 +27,4 @@ module.exports = {
       version: 'detect',
     },
   },
-};
+}

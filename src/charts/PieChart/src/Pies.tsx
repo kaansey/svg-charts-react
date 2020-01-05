@@ -6,8 +6,8 @@ import {
   TransitionDuration,
   PieChartData,
 } from '../../types/common'
+import { DECIMALS } from '../../constants'
 
-const decimals = 4
 let offset = 0
 
 interface PiesPorps {
@@ -54,10 +54,9 @@ const Pies: React.FC<PiesPorps> = ({
       radius,
       value: d.value,
       center,
-      decimals,
     })
 
-    const currentOffset = ((offset / total) * 360).toFixed(decimals)
+    const currentOffset = ((offset / total) * 360).toFixed(DECIMALS)
     offset += d.value
 
     const isSinglePie = data.length === 1
@@ -85,13 +84,11 @@ const Pies: React.FC<PiesPorps> = ({
               transitionTimingFunction: transitionTimingFunction,
               transitionDuration: transitionDuration,
             }}
-          >
-            {d.title && <title>{d.title}</title>}
-          </path>
+          ></path>
         )}
       </g>
     )
   })
 }
 
-export default Pies
+export default React.memo(Pies)

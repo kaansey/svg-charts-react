@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
+import ReactTooltip from 'react-tooltip'
+
 import Pies from './Pies'
+import TooltipTemplate from './TooltipTemplate'
 import { transformPiesData, assignPiesColor } from './utils'
 import {
   TransitionTimingFunction,
@@ -7,6 +10,7 @@ import {
   PieChartData,
   StrokeLinejoin,
   ColorTone,
+  CustomTooltipTemplateProps,
 } from '../../types/common'
 
 interface PieChartProps {
@@ -22,26 +26,14 @@ interface PieChartProps {
   transitionTimingFunction?: TransitionTimingFunction
   onPieHover?(data: PieChartData, index: number, e: EventTarget): void
   colorTone?: ColorTone
+  showTooltip?: boolean
+  CustomTooltipTemplate?: React.ComponentType<CustomTooltipTemplateProps>
 }
 
 const PieChart: React.FC<PieChartProps> = props => {
   const { data, viewBoxSize } = props
 
   const [hoveredIndex, setHoveredIndex] = useState()
-
-  const hanldePieHover = (
-    data: PieChartData,
-    index: number,
-    e: EventTarget
-  ) => {
-    if (props.expandOnHover) {
-      setHoveredIndex(index)
-    }
-
-    if (props.onPieHover) {
-      props.onPieHover(data, index, e)
-    }
-  }
 
   const center = props.viewBoxSize / 2
   const offset = props.expandOnHover ? props.expandSize : 0
@@ -52,24 +44,52 @@ const PieChart: React.FC<PieChartProps> = props => {
     piesData = assignPiesColor(piesData, props.colorTone)
   }
 
+  const hanldePieHover = (
+    piesData: PieChartData,
+    index: number,
+    e: EventTarget
+  ) => {
+    if (props.expandOnHover) {
+      setHoveredIndex(index)
+    }
+
+    if (props.onPieHover) {
+      props.onPieHover(piesData, index, e)
+    }
+  }
+
+  const getTooltipContent = useCallback(() => {
+    if (props.showTooltip && piesData[hoveredIndex]) {
+      const pieDetail = piesData[hoveredIndex]
+      const { CustomTooltipTemplate } = props
+      return <CustomTooltipTemplate data={pieDetail} />
+    }
+    return null
+  }, [hoveredIndex])
+
   return piesData && piesData.length > 0 ? (
-    <svg
-      viewBox={`0 0 ${viewBoxSize + offset * 2} ${viewBoxSize + offset * 2}`}
-    >
-      <g transform={`translate(${offset}, ${offset})`}>
-        <Pies
-          center={center}
-          data={piesData}
-          onHover={hanldePieHover}
-          expandSize={props.expandSize}
-          strokeColor={props.strokeColor}
-          strokeLinejoin={props.strokeLinejoin}
-          strokeWidth={props.strokeWidth}
-          transitionDuration={props.transitionDuration}
-          transitionTimingFunction={props.transitionTimingFunction}
-        />
-      </g>
-    </svg>
+    <>
+      <svg
+        data-tip=""
+        data-for="tooltip"
+        viewBox={`0 0 ${viewBoxSize + offset * 2} ${viewBoxSize + offset * 2}`}
+      >
+        <g transform={`translate(${offset}, ${offset})`}>
+          <Pies
+            center={center}
+            data={piesData}
+            onHover={hanldePieHover}
+            expandSize={props.expandSize}
+            strokeColor={props.strokeColor}
+            strokeLinejoin={props.strokeLinejoin}
+            strokeWidth={props.strokeWidth}
+            transitionDuration={props.transitionDuration}
+            transitionTimingFunction={props.transitionTimingFunction}
+          />
+        </g>
+      </svg>
+      <ReactTooltip id="tooltip" getContent={getTooltipContent} />
+    </>
   ) : null
 }
 
@@ -85,6 +105,8 @@ PieChart.defaultProps = {
   strokeWidth: 0,
   transitionDuration: '0s',
   transitionTimingFunction: 'ease-out',
+  showTooltip: true,
+  CustomTooltipTemplate: TooltipTemplate,
 }
 
-export default PieChart
+export default React.memo(PieChart)

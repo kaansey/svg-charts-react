@@ -1,4 +1,5 @@
 import { PieChartData, ColorTone } from '../../types/common'
+import { COLORS, DECIMALS, PERCENTAGE_VALUE } from '../../constants'
 
 export const transformPiesData = (
   data: Array<PieChartData>,
@@ -9,14 +10,26 @@ export const transformPiesData = (
     .filter(d => d.value > 0)
     .sort((a, b) => b.value - a.value)
 
-  console.log(filteredData)
+  const total = data.reduce(
+    (prev: number, current: PieChartData) => current.value + prev,
+    0
+  )
 
   if (filteredData.length) {
     return expandOnHover
-      ? filteredData.map((item, index) => ({
-        ...item,
-        hovered: index === hoveredIndex,
-      }))
+      ? filteredData.map((item, index) => {
+        const percentage = (
+          Number(
+            (((item.value / total) * 360 * Math.PI) / 180).toFixed(DECIMALS)
+          ) * PERCENTAGE_VALUE
+        ).toFixed(2)
+
+        return {
+          ...item,
+          hovered: index === hoveredIndex,
+          percentage,
+        }
+      })
       : filteredData
   }
   return filteredData
@@ -27,20 +40,18 @@ export const getPath = ({
   radius,
   value,
   center,
-  decimals,
 }: {
   total: number
   radius: number
   value: number
   center: number
-  decimals: number
 }) => {
   const radians = Number(
-    (((value / total) * 360 * Math.PI) / 180).toFixed(decimals)
+    (((value / total) * 360 * Math.PI) / 180).toFixed(DECIMALS)
   )
 
-  const x = (center + Math.sin(radians) * radius).toFixed(decimals)
-  const y = (center - Math.cos(radians) * radius).toFixed(decimals)
+  const x = (center + Math.sin(radians) * radius).toFixed(DECIMALS)
+  const y = (center - Math.cos(radians) * radius).toFixed(DECIMALS)
   const la = radians > Math.PI ? 1 : 0
 
   const path = `
@@ -54,14 +65,8 @@ export const getPath = ({
 }
 
 const colorToHex = (color: string) => {
-  const staticColors: any = {
-    blue: '#4d8af0',
-    red: '#cc3333',
-    green: '#2e8f59',
-    yellow: '#a3a328',
-  }
-
-  return color in staticColors ? staticColors[color] : staticColors.blue
+  color = color.toUpperCase()
+  return color in COLORS ? COLORS[color] : COLORS.BLUE
 }
 
 const lightenColor = (color: string, percent: number) => {

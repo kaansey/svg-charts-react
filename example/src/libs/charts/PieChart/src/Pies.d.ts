@@ -11,5 +11,5 @@ interface PiesPorps {
     transitionDuration?: TransitionDuration;
     transitionTimingFunction?: TransitionTimingFunction;
 }
-declare const Pies: React.FC<PiesPorps>;
-export default Pies;
+declare const _default: React.NamedExoticComponent<PiesPorps>;
+export default _default;

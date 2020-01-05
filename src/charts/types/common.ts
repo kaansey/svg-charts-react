@@ -3,6 +3,7 @@ export type PieChartData = {
   value: number
   color?: string
   hovered?: boolean
+  percentage?: string
 }
 
 export type TransitionDuration = string
@@ -20,4 +21,8 @@ export type StrokeLinejoin = 'miter' | 'round' | 'bevel' | 'inherit'
 export type ColorTone = {
   color: 'blue' | 'red' | 'green' | 'yellow' | string
   diffPercentage?: number
+}
+
+export type CustomTooltipTemplateProps = {
+  data: PieChartData
 }
