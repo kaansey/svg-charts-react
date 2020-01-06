@@ -1,7 +1,7 @@
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
 import { sizeSnapshot } from 'rollup-plugin-size-snapshot'
-import { terser } from 'rollup-plugin-terser'
+// import { terser } from 'rollup-plugin-terser'
 
 export default [
   {
@@ -24,7 +24,7 @@ export default [
         typescript: require('typescript'),
       }),
       sizeSnapshot(),
-      terser(), // minifies generated bundles
+      // terser(), // minifies generated bundles
     ],
   },
 ]
