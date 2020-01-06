@@ -1,11 +1,15 @@
 import typescript from 'rollup-plugin-typescript2'
 import pkg from './package.json'
-// import { terser } from 'rollup-plugin-terser'
+import { sizeSnapshot } from 'rollup-plugin-size-snapshot'
+import { terser } from 'rollup-plugin-terser'
 
 export default [
   {
     input: 'src/index.ts',
-    external: Object.keys(pkg.peerDependencies || {}),
+    external: [
+      Object.keys(pkg.peerDependencies),
+      Object.keys(pkg.dependencies),
+    ],
     output: [
       { file: pkg.main, format: 'cjs' },
       { file: pkg.module, format: 'esm' },
@@ -19,7 +23,8 @@ export default [
       typescript({
         typescript: require('typescript'),
       }),
-      // terser(), // minifies generated bundles
+      sizeSnapshot(),
+      terser(), // minifies generated bundles
     ],
   },
 ]
